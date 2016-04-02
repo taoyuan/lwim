@@ -2,7 +2,9 @@
 "use strict";
 
 var assert = require('chai').assert;
-const lwim = require("../");
+var path = require('path');
+var fs = require('fs');
+var lwim = require("../");
 
 describe("Bitmap Basic", function () {
   describe("Creation", function () {
@@ -91,5 +93,32 @@ describe("Bitmap Basic", function () {
       }
     });
   });
+
+  describe("Load", function () {
+    var imagefile = path.join(__dirname, 'fixtures', 'simple.bmp');
+
+    it("should load from file", function () {
+      var image = lwim.Bitmap.fromFile(imagefile);
+      assert.ok(image);
+      assert.equal(image.width * image.height, image.data.length);
+    });
+
+    it("should load from buffer", function () {
+      var buffer = fs.readFileSync(imagefile);
+      var image = lwim.Bitmap.fromBuffer(buffer);
+      assert.ok(image);
+      assert.equal(image.width * image.height, image.data.length);
+    });
+
+    it("should load according to parameter type", function () {
+      var image = lwim.Bitmap.load(imagefile);
+      assert.ok(image);
+      assert.equal(image.width * image.height, image.data.length);
+      var buffer = fs.readFileSync(imagefile);
+      image = lwim.Bitmap.load(buffer);
+      assert.ok(image);
+      assert.equal(image.width * image.height, image.data.length);
+    });
+  })
 
 });
