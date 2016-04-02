@@ -111,13 +111,14 @@ describe("Bitmap Basic", function () {
     });
 
     it("should load according to parameter type", function () {
-      var image = lwim.Bitmap.load(imagefile);
-      assert.ok(image);
-      assert.equal(image.width * image.height, image.data.length);
+      var imageFromFile = lwim.Bitmap.load(imagefile);
+      assert.ok(imageFromFile);
+      assert.equal(imageFromFile.width * imageFromFile.height, imageFromFile.data.length);
       var buffer = fs.readFileSync(imagefile);
-      image = lwim.Bitmap.load(buffer);
-      assert.ok(image);
-      assert.equal(image.width * image.height, image.data.length);
+      var imageFromBuffer = lwim.Bitmap.load(buffer);
+      assert.ok(imageFromBuffer);
+      assert.equal(imageFromBuffer.width * imageFromBuffer.height, imageFromBuffer.data.length);
+      assert.deepEqual(imageFromBuffer.data, imageFromFile.data);
     });
   })
 
