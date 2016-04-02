@@ -2,7 +2,7 @@
 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
-> Light Weight Image Manipulation for NodeJS
+> Light Weight Image Manipulation for NodeJS. It is forked from [mono-bitmap](https://github.com/vonderheide/mono-bitmap)
 
 ## Installation
 
