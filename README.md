@@ -32,13 +32,14 @@ $ npm install --save lwim
 var lwim = require("..");
 
 // Create bitmap
-var bitmap = new lwim.Bitmap(400, 300);
+var bitmap = lwim.bitmap(411, 305);
 
 // Draw rectangle with border
 bitmap.drawFilledRect(10, 10, 100, 50, 0x00, 0xff);
+bitmap.drawEllipse(50, 100, 200, 100, 0x00, 0xff);
 
 // Draw another bitmap with some source pixels in a specific color handled as transparent
-var overlayBitmap = lwim.Bitmap.fromFile("overlayBitmap.bmp");
+var overlayBitmap = lwim.bitmap.fromFile("overlayBitmap.bmp");
 bitmap.drawBitmap(overlayBitmap, 200, 0, overlayBitmap.palette.indexOf(0xff00ff/*magenta*/));
 
 // Draw text

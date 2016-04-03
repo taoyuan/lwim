@@ -19,7 +19,7 @@ describe("Bitmap Basic", function () {
       var image = new lwim.Bitmap(5, 10, 2);
       var data = image.data;
       for (var i = 0; i < data.length; i++) {
-        assert.equal(data[i], 0);
+        assert.equal(data[i], 0xFF);
       }
     });
 
@@ -122,11 +122,10 @@ describe("Bitmap Basic", function () {
     });
   });
 
-  describe("save", function () {
+  describe("Save", function () {
     it("should save to buffer (width is 4 multiple)", function () {
       var image, buffer;
       image = lwim.bitmap(4, 4);
-      image.clear(0xFF);
       buffer = image.toBuffer();
       assert.lengthOf(buffer, 1094);
     });
@@ -134,9 +133,15 @@ describe("Bitmap Basic", function () {
     it("should save to buffer (width is not 4 multiple)", function () {
       var image, buffer;
       image = lwim.bitmap(6, 6);
-      image.clear(0xFF);
       buffer = image.toBuffer();
       assert.lengthOf(buffer, 1126);
+    });
+
+    it("should save to buffer for 2 channels", function () {
+      var image, buffer;
+      image = lwim.bitmap(4, 4, 2);
+      buffer = image.toBuffer();
+      assert.lengthOf(buffer, 98);
     });
   });
 });
