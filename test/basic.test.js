@@ -120,6 +120,23 @@ describe("Bitmap Basic", function () {
       assert.equal(imageFromBuffer.width * imageFromBuffer.height, imageFromBuffer.data.length);
       assert.deepEqual(imageFromBuffer.data, imageFromFile.data);
     });
-  })
+  });
 
+  describe("save", function () {
+    it("should save to buffer (width is 4 multiple)", function () {
+      var image, buffer;
+      image = lwim.bitmap(4, 4);
+      image.clear(0xFF);
+      buffer = image.toBuffer();
+      assert.lengthOf(buffer, 1094);
+    });
+
+    it("should save to buffer (width is not 4 multiple)", function () {
+      var image, buffer;
+      image = lwim.bitmap(6, 6);
+      image.clear(0xFF);
+      buffer = image.toBuffer();
+      assert.lengthOf(buffer, 1126);
+    });
+  });
 });
