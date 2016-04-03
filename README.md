@@ -48,7 +48,7 @@ font.setSize(20);
 bitmap.drawText(font, "Hello World!", 10, 100);
 
 // The raw pixel data can also be processed in a user-specific way
-let data = bitmap.data;  // Return a Node.js Buffer
+var data = bitmap.data;  // Return a Node.js Buffer
 ```
 
 ## Documentation
